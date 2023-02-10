@@ -24,11 +24,11 @@ class PostsDAO:
 
         return new_posts
 
-    # def load_posts_json(self):
-    #     with open(self.posts_path, 'r', encoding='utf-8') as file:
-    #         posts_data = json.load(file)
+    def load_posts_json(self):
+        with open(self.posts_path, 'r', encoding='utf-8') as file:
+            posts_data = json.load(file)
 
-        # return posts_data
+        return posts_data
 
     def load_comments(self):
         with open(self.comments_path, 'r', encoding='utf-8') as file:
@@ -38,15 +38,15 @@ class PostsDAO:
     def get_all_posts(self):
         return self.load_posts()
 
-    # def get_posts_by_username(self, username):
-    #     posts = self.load_posts()
-    #     user_posts = []
-    #
-    #     for post in posts:
-    #         if post.poster_name.lower() == username.lower():
-    #             user_posts.append(post)
-    #
-    #     return user_posts
+    def get_posts_by_username(self, username):
+        posts = self.load_posts()
+        user_posts = []
+
+        for post in posts:
+            if post.poster_name.lower() == username.lower():
+                user_posts.append(post)
+
+        return user_posts
 
     def get_comments_by_post_id(self, post_id):
         comments = self.load_comments()
@@ -73,10 +73,10 @@ class PostsDAO:
                 return post
         return
 
-    # def get_post_by_pk_json(self, pk):
-    #     posts = self.load_posts_json()
-    #     for post in posts:
-    #         if post['pk'] == pk:
-    #             return post
-    #     return
+    def get_post_by_pk_json(self, pk):
+        posts = self.load_posts_json()
+        for post in posts:
+            if post['pk'] == pk:
+                return post
+        return
 

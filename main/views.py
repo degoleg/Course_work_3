@@ -1,5 +1,5 @@
 from pprint import pprint
-from urllib import request
+from flask import request
 
 
 from flask import render_template, Blueprint
@@ -27,9 +27,13 @@ def post_page(postid):
 def search_page():
     query = request.args.get('s')
     found_posts = posts.search_posts(query)
-    pprint(found_posts)
-    #return render_template('search.html', posts=found_posts)
+    return render_template('search.html', posts=found_posts)
 
+
+@main_blueprint.route('/users/<username>', methods=['GET'])
+def user_page(username):
+    user_posts = posts.get_posts_by_username(username)
+    return render_template('user-feed.html', posts=user_posts, username=username)
 
 
 
